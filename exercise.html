@@ -21,10 +21,10 @@
   max-width: 420px;
   margin: 80px auto;
   padding: 30px;
-  background: #0f172a;
+  background: hsl(225, 27%, 94%);
   border-radius: 20px;
   text-align: center;
-  box-shadow: 0 0 25px rgba(34,197,94,0.2);
+  box-shadow: 0 0 25px rgba(224, 247, 234, 0.2);
 }
 
 h2 {
@@ -77,10 +77,17 @@ button:hover {
   color: #22c55e;
 }
 
-.result li {
-  margin: 8px 0;
-}
+.result {
+  margin-top: 20px;
+  text-align: left;
+  background: #020617;
+  padding: 15px;
+  border-radius: 12px;
+  display: none;
+  animation: fadeIn 0.5s ease-in-out;
 
+  color: white;
+}
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
