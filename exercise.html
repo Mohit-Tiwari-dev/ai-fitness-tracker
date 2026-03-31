@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Exercises</title>
+<style>
+body {
+    background: url('exercise-bg.jpg');
+    background-size: cover;
+    color: white;
+    text-align: center;
+}
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 50px;
+}
+.box {
+    background: rgba(0,0,0,0.7);
+    padding: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<a href="index.html">⬅ Back</a>
+
+<h1>Exercises</h1>
+
+<div class="grid">
+<div class="box" onclick="show('Pushups, Bench Press')">Chest</div>
+<div class="box" onclick="show('Curls')">Biceps</div>
+<div class="box" onclick="show('Squats')">Legs</div>
+<div class="box" onclick="show('Plank')">Abs</div>
+</div>
+
+<h2 id="result"></h2>
+
+<script>
+function show(t){
+result.innerText=t;
+}
+</script>
+
+</body>
+</html>

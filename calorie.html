@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AI Fitness Calorie Calculator</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  height: 100vh;
+
+  /* 🔥 BACKGROUND IMAGE */
+  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)),
+  url('bg.jpg'); /* change this to your image */
+  background-size: cover;
+  background-position: center;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 🔥 GLASS CARD */
+.container {
+  width: 90%;
+  max-width: 450px;
+  padding: 25px;
+  border-radius: 15px;
+
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 0 30px rgba(0,0,0,0.5);
+
+  color: white;
+}
+
+/* TITLE */
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* INPUTS */
+input, select {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+}
+
+/* BUTTON */
+button {
+  width: 100%;
+  padding: 12px;
+  background: #22c55e;
+  color: black;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #16a34a;
+  transform: scale(1.03);
+}
+
+/* RESULT */
+.result {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 10px;
+
+  background: rgba(34,197,94,0.15);
+  border: 1px solid rgba(34,197,94,0.3);
+}
+
+/* RESULT TEXT */
+.result p {
+  margin: 6px 0;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h2>🔥 Calorie Calculator</h2>
+
+  <label>Age</label>
+  <input type="number" id="age">
+
+  <label>Gender</label>
+  <select id="gender">
+    <option value="male">Male</option>
+    <option value="female">Female</option>
+  </select>
+
+  <label>Height (cm)</label>
+  <input type="number" id="height">
+
+  <label>Weight (kg)</label>
+  <input type="number" id="weight">
+
+  <label>Activity Level</label>
+  <select id="activity">
+    <option value="1.2">Sedentary</option>
+    <option value="1.375">Light</option>
+    <option value="1.55">Moderate</option>
+    <option value="1.725">Active</option>
+    <option value="1.9">Very Active</option>
+  </select>
+
+  <button onclick="calculateCalories()">Calculate</button>
+
+  <div class="result" id="result" style="display:none;"></div>
+</div>
+
+<script>
+function calculateCalories() {
+  let age = parseInt(document.getElementById("age").value);
+  let gender = document.getElementById("gender").value;
+  let height = parseFloat(document.getElementById("height").value);
+  let weight = parseFloat(document.getElementById("weight").value);
+  let activity = parseFloat(document.getElementById("activity").value);
+
+  if (!age || !height || !weight) {
+    alert("Please fill all fields");
+    return;
+  }
+
+  let bmr;
+  if (gender === "male") {
+    bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+  } else {
+    bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+  }
+
+  let maintenance = Math.round(bmr * activity);
+  let mildLoss = Math.round(maintenance * 0.9);
+  let weightLoss = Math.round(maintenance * 0.8);
+  let extremeLoss = Math.round(maintenance * 0.6);
+
+  let resultHTML = `
+    <h3>📊 Results</h3>
+    <p><b>Maintain:</b> ${maintenance} kcal/day</p>
+    <p><b>Mild Loss:</b> ${mildLoss} kcal/day</p>
+    <p><b>Weight Loss:</b> ${weightLoss} kcal/day</p>
+    <p><b>Extreme Loss:</b> ${extremeLoss} kcal/day</p>
+  `;
+
+  let resultDiv = document.getElementById("result");
+  resultDiv.style.display = "block";
+  resultDiv.innerHTML = resultHTML;
+}
+</script>
+
+</body>
+</html>
